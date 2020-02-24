@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/priority_box"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/red_selection"
+            android:layout_width="0dp"
+            android:src="@drawable/red_circle"
+            android:layout_weight="1"
+            android:layout_height="50dp"/>
+        <ImageView
+            android:id="@+id/yellow_selection"
+            android:layout_width="0dp"
+            android:src="@drawable/yellow_circle"
+            android:layout_weight="1"
+            android:layout_height="50dp"/>
+        <ImageView
+            android:id="@+id/green_selection"
+            android:layout_width="0dp"
+            android:src="@drawable/green_circle"
+            android:layout_weight="1"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+    <TextView
+        android:layout_below="@id/priority_box"
+        android:layout_width="match_parent"
+        android:text="Red selected"
+        android:id="@+id/current_selection"
+        android:layout_height="wrap_content"/>
 
     <ListView
+        android:layout_below="@id/current_selection"
         android:layout_width="match_parent"
         android:id="@+id/country_list"
+        android:layout_above="@+id/enter_task_edit_text"
         android:layout_height="match_parent"/>
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/enter_task_edit_text"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_toLeftOf="@id/add_task_button"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/add_task_button"
+        android:text="Add task"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>
