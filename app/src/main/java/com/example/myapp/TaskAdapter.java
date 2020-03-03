@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class TaskAdapter extends ArrayAdapter<Task> {
 
+
     private Context mContext;
     private ArrayList<Task> taskArrayList;
 

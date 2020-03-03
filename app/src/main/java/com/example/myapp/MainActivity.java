@@ -2,16 +2,14 @@ package com.example.myapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int currentPriority=0;
 
-    ArrayList<Task> taskArrayList;
+    public static ArrayList<Task> taskArrayList;
 
 
     // 1 -red, 2- yellow, 3-green
@@ -34,8 +32,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        taskEditText=findViewById(R.id.enter_task_edit_text);
+        taskArrayList=new ArrayList<>();
+
+
         addTask=findViewById(R.id.add_task_button);
+
+
+        ListView list=findViewById(R.id.task_list);
+        final TaskAdapter taskAdapter=new TaskAdapter(this,R.id.task_list,taskArrayList);
+        list.setAdapter(taskAdapter);
+
+       /* ArrayAdapter arrayAdapter=new ArrayAdapter(this,R.layout.country_list_item
+        ,R.id.text,country);
+*/
+        // list.setAdapter();
+
+      /*  taskEditText=findViewById(R.id.enter_task_edit_text);
+
 
         red=findViewById(R.id.red_selection);
         yellow=findViewById(R.id.yellow_selection);
@@ -45,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
        // final String country[]={"India","US","UK"};
 
-        taskArrayList=new ArrayList<>();
+
 
         final TaskAdapter taskAdapter=new TaskAdapter(this,R.id.country_list,taskArrayList);
 
 
         ListView list=findViewById(R.id.country_list);
-        list.setAdapter(taskAdapter);
+        list.setAdapter(taskAdapter);*/
 
        /* ArrayAdapter arrayAdapter=new ArrayAdapter(this,R.layout.country_list_item
         ,R.id.text,country);
@@ -66,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
-       red.setOnClickListener(new View.OnClickListener() {
+      /* red.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                currentPriority=1;
@@ -86,21 +99,13 @@ public class MainActivity extends AppCompatActivity {
                 currentPriority=3;
                 currentSelection.setText("Green");
             }
-        });
+        });*/
 
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String enteredTask=taskEditText.getText().toString();
-
-                Task task=new Task(currentPriority,enteredTask);
-
-                taskArrayList.add(task);
-
-                taskAdapter.notifyDataSetChanged();
-
-
-
+                Intent intent=new Intent(MainActivity.this,AddTask.class);
+                startActivity(intent);
             }
         });
 
